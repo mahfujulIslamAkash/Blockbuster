@@ -38,7 +38,7 @@ class TitleView: UIView {
         addSubview(title)
         title.anchorView(left: leftAnchor, bottom: bottomAnchor, paddingLeft: 15, height: 40)
         addSubview(seachButton)
-        seachButton.anchorView(bottom: bottomAnchor, right: rightAnchor, height: 40)
+        seachButton.anchorView(bottom: bottomAnchor, right: rightAnchor, paddingRight: 15, height: 40)
         
         heightAnchor.constraint(equalToConstant: motherSize.height).isActive = true
         widthAnchor.constraint(equalToConstant: motherSize.width).isActive = true

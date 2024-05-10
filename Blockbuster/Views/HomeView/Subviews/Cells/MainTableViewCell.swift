@@ -163,17 +163,33 @@ class MainTableViewCell: UITableViewCell {
     /// Handle loading animation
     private func loadingAnimation(_ isLoading: Bool) {
         if isLoading {
-            DispatchQueue.main.async {[weak self] in
-                self?.stackView.layer.opacity = 0
-                self?.indicatorView.startAnimating()
+            if let genre = movieViewModel.lastGenre{
+                DispatchQueue.main.async {[weak self] in
+                    self?.moviesCollection.layer.opacity = 0
+                    self?.indicatorView.startAnimating()
+                    
+                }
+            }else{
+                DispatchQueue.main.async {[weak self] in
+                    self?.stackView.layer.opacity = 0
+                    self?.indicatorView.startAnimating()
+                }
             }
-        } else {
-            DispatchQueue.main.async {[weak self] in
-                self?.stackView.layer.opacity = 1
-                self?.indicatorView.stopAnimating()
+        }else {
+            if let genre = movieViewModel.lastGenre{
+                DispatchQueue.main.async {[weak self] in
+                    self?.moviesCollection.layer.opacity = 1
+                    self?.indicatorView.stopAnimating()
+                    
+                }
+            }else{
+                DispatchQueue.main.async {[weak self] in
+                    self?.stackView.layer.opacity = 1
+                    self?.indicatorView.stopAnimating()
+                }
             }
         }
-    }
+        }
 
 }
 
@@ -214,6 +230,8 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
             let oldPath = IndexPath(row: movieViewModel.getCurrentSelection(), section: indexPath.section)
             movieViewModel.updateSelection(indexPath)
             collectionView.reloadItems(at: [oldPath, indexPath])
+            
+            movieViewModel.callApi(movieViewModel.getTitle(indexPath))
 
         }else{
         }

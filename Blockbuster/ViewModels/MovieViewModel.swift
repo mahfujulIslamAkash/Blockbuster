@@ -17,6 +17,7 @@ class MovieViewModel{
     var categories: [Category]?
     private var currentSelection = 0
     private var movies: [Movie]?
+    var lastGenre: String?
         
     var isLoaded: ObservableObject<Bool?> = ObservableObject(nil)
     var isMoviesLoaded: ObservableObject<Bool?> = ObservableObject(nil)
@@ -27,7 +28,7 @@ class MovieViewModel{
     
     func initiate(_ cellType: CellType = .all){
         self.cellType = cellType
-        callApi()
+        callApi(nil)
     }
     private func getCategories() -> [Category]{
         if let categories = categories{
@@ -70,7 +71,12 @@ class MovieViewModel{
     }
     
     func getMovieTitle(_ indexPath: IndexPath) -> String{
-        return "\(getMovies()[indexPath.row].id)"
+        if indexPath.row < getMovies().count{
+            return "\(getMovies()[indexPath.row].title)"
+        }else{
+            return "n/a"
+        }
+        
     }
     func getPosterEndpoint(_ indexPath: IndexPath) -> String{
         if let endpoint = getMovies()[indexPath.row].posterPath{
@@ -81,41 +87,71 @@ class MovieViewModel{
         
     }
     
-    func callApi(){
-        MovieViewModel.shared.getCategories(completion: {[weak self] success, categories in
-            if success{
-                if let categories = categories{
-                    self?.categories = categories
-                    self?.isLoading.value = false
-                    self?.isLoaded.value = true
-                }
+    func callApi(_ genre: String?){
+        lastGenre = genre
+        isLoading.value = true
+        if let genre = genre{
+            if cellType == .all{
+                MovieViewModel.shared.getGenreMovies(genre, completion: {[weak self] success, movies in
+                    if success{
+                        if let movies = movies{
+                            self?.movies = movies
+                            self?.isLoading.value = false
+                            self?.isMoviesLoaded.value = true
+                        }
+                    }
+                    
+                })
+            }else{
+                MovieViewModel.shared.getPopularMovies(completion: {[weak self] success, movies in
+                    if success{
+                        if let movies = movies{
+                            self?.movies = movies
+                            self?.isLoading.value = false
+                            self?.isMoviesLoaded.value = true
+                        }
+                    }
+                    
+                })
             }
-            
-        })
-        
-        if cellType == .all{
-            MovieViewModel.shared.getGenreMovies(completion: {[weak self] success, movies in
-                if success{
-                    if let movies = movies{
-                        self?.movies = movies
-                        self?.isLoading.value = false
-                        self?.isMoviesLoaded.value = true
-                    }
-                }
-                
-            })
         }else{
-            MovieViewModel.shared.getPopularMovies(completion: {[weak self] success, movies in
+            MovieViewModel.shared.getCategories(completion: {[weak self] success, categories in
                 if success{
-                    if let movies = movies{
-                        self?.movies = movies
+                    if let categories = categories{
+                        self?.categories = categories
                         self?.isLoading.value = false
-                        self?.isMoviesLoaded.value = true
+                        self?.isLoaded.value = true
                     }
                 }
                 
             })
+            if cellType == .all{
+                MovieViewModel.shared.getGenreMovies(completion: {[weak self] success, movies in
+                    if success{
+                        if let movies = movies{
+                            self?.movies = movies
+                            self?.isLoading.value = false
+                            self?.isMoviesLoaded.value = true
+                        }
+                    }
+                    
+                })
+            }else{
+                MovieViewModel.shared.getPopularMovies(completion: {[weak self] success, movies in
+                    if success{
+                        if let movies = movies{
+                            self?.movies = movies
+                            self?.isLoading.value = false
+                            self?.isMoviesLoaded.value = true
+                        }
+                    }
+                    
+                })
+            }
         }
+        
+        
+        
         
     }
     

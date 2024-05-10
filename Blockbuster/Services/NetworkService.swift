@@ -125,16 +125,15 @@ final class NetworkService{
         
     }
     
-    func getGenreMovies(_ withID: Int = 0, completion: @escaping(_ success: Bool, _ movies: [Movie]?)-> Void){
+    func getGenreMovies(_ withCategory: String = "Action", completion: @escaping(_ success: Bool, _ movies: [Movie]?)-> Void){
 
-        let url = URL(string: "https://api.themoviedb.org/3/discover/movie")!
+        let url = URL(string: "https://api.themoviedb.org/3/search/movie")!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         let queryItems: [URLQueryItem] = [
+          URLQueryItem(name: "query", value: withCategory),
           URLQueryItem(name: "include_adult", value: "false"),
-          URLQueryItem(name: "include_video", value: "false"),
           URLQueryItem(name: "language", value: "en-US"),
           URLQueryItem(name: "page", value: "1"),
-          URLQueryItem(name: "sort_by", value: "popularity.desc"),
         ]
         components.queryItems = components.queryItems.map { $0 + queryItems } ?? queryItems
 

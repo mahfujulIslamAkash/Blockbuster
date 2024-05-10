@@ -86,117 +86,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8F59E876-DC2A-4EB0-A615-E8D29BFCB5D8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Blockbuster/Services/ImageCachingService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "cacheImage(_:data:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8F59E876-DC2A-4EB0-A615-E8D29BFCB5D8 - 689d17df1590025f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () -&gt; () in Blockbuster.ImageCachingService.cacheImage(_: Swift.String, data: Foundation.Data) -&gt; ()"
-                  moduleName = "Blockbuster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Services/ImageCachingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "320">
-               </Location>
-               <Location
-                  uuid = "8F59E876-DC2A-4EB0-A615-E8D29BFCB5D8 - 689d17df1590023e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () -&gt; () in Blockbuster.ImageCachingService.cacheImage(_: Swift.String, data: Foundation.Data) -&gt; ()"
-                  moduleName = "Blockbuster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Services/ImageCachingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "320">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2EBF1B7D-D593-41BF-A460-2445F167DE32"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Blockbuster/Services/ImageCachingService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "cacheImage(_:data:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2EBF1B7D-D593-41BF-A460-2445F167DE32 - d1cfdfee6648d5bb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Blockbuster.ImageCachingService.cacheImage(_: Swift.String, data: Foundation.Data) -&gt; ()"
-                  moduleName = "Blockbuster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Services/ImageCachingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "264">
-               </Location>
-               <Location
-                  uuid = "2EBF1B7D-D593-41BF-A460-2445F167DE32 - d1cfdfee6648d65a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Blockbuster.ImageCachingService.cacheImage(_: Swift.String, data: Foundation.Data) -&gt; ()"
-                  moduleName = "Blockbuster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Services/ImageCachingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "264">
-               </Location>
-               <Location
-                  uuid = "2EBF1B7D-D593-41BF-A460-2445F167DE32 - 689d17df1590023e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () -&gt; () in Blockbuster.ImageCachingService.cacheImage(_: Swift.String, data: Foundation.Data) -&gt; ()"
-                  moduleName = "Blockbuster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Services/ImageCachingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "320">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "272D9344-F9A0-4074-BEDF-831DA253F8D4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -213,17 +102,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0F9381A1-ADE0-424D-8BC5-56434C043DE8"
+            uuid = "B5031AE0-9E9A-414D-8A41-0C7CF17C4B1C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "setupLoadedObserver()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B5031AE0-9E9A-414D-8A41-0C7CF17C4B1C - 7dd5b813aeceb8fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in Blockbuster.MainTableViewCell.setupLoadedObserver() -&gt; ()"
+                  moduleName = "Blockbuster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "288">
+               </Location>
+               <Location
+                  uuid = "B5031AE0-9E9A-414D-8A41-0C7CF17C4B1C - 7dd5b813aeceb8fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in Blockbuster.MainTableViewCell.setupLoadedObserver() -&gt; ()"
+                  moduleName = "Blockbuster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "B5031AE0-9E9A-414D-8A41-0C7CF17C4B1C - 9582e8d6e0ce149"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in Blockbuster.MainTableViewCell.setupLoadedObserver() -&gt; ()"
+                  moduleName = "Blockbuster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "118"
+                  endingLineNumber = "118"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
