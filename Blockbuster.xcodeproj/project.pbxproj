@@ -99,6 +99,11 @@
 		2486D75C2BEE157C00FA5EEF /* Blockbuster */ = {
 			isa = PBXGroup;
 			children = (
+				2486D78D2BEE177500FA5EEF /* Models */,
+				2486D78E2BEE177B00FA5EEF /* Views */,
+				2486D78F2BEE178100FA5EEF /* ViewModels */,
+				2486D7912BEE179200FA5EEF /* Services */,
+				2486D7902BEE178A00FA5EEF /* Supports */,
 				2486D75D2BEE157C00FA5EEF /* AppDelegate.swift */,
 				2486D75F2BEE157C00FA5EEF /* SceneDelegate.swift */,
 				2486D7612BEE157C00FA5EEF /* ViewController.swift */,
@@ -125,6 +130,41 @@
 				2486D7802BEE157D00FA5EEF /* BlockbusterUITestsLaunchTests.swift */,
 			);
 			path = BlockbusterUITests;
+			sourceTree = "<group>";
+		};
+		2486D78D2BEE177500FA5EEF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2486D78E2BEE177B00FA5EEF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2486D78F2BEE178100FA5EEF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2486D7902BEE178A00FA5EEF /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		2486D7912BEE179200FA5EEF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
