@@ -193,6 +193,8 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieCollectionViewCell
+            cell.posterViewModel = PosterViewModel(movieViewModel.getPosterEndpoint(indexPath))
+            cell.setupObservers()
             cell.updateUI(movieViewModel.getMovieTitle(indexPath), movieViewModel.getPosterEndpoint(indexPath))
             return cell
         }

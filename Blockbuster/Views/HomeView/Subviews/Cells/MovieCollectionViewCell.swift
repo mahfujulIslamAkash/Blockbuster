@@ -58,32 +58,37 @@ class MovieCollectionViewCell: UICollectionViewCell {
         title.text = name
         
         setupObservers()
-        getPoster(endpoint)
+        
     }
     
     func setupObservers() {
         setupLoadedObserver()
         setupIsLoadingObserver()
         setupErrorObserver()
+        getPoster()
         
     }
-    func getPoster(_ endpoint: String){
-        posterViewModel.getPoster(endpoint)
+    func getPoster(){
+        posterViewModel.getPoster()
     }
     
-    private func updateUI(){
-        DispatchQueue.main.async {[weak self] in
-            self?.moviePoster.image = self?.posterViewModel.getPosterImage()
-            self?.indicatorView.stopAnimating()
-        }
-        
-    }
+//    private func updateUI(){
+//        DispatchQueue.main.async {[weak self] in
+//            self?.moviePoster.image = self?.posterViewModel.getPosterImage()
+//            self?.indicatorView.stopAnimating()
+//        }
+//        
+//    }
     
     /// Set up observer for data loaded state
     private func setupLoadedObserver() {
         posterViewModel.isLoaded.binds({[weak self] success in
             if success{
-                self?.updateUI()
+                DispatchQueue.main.async {[weak self] in
+                    self?.moviePoster.image = self?.posterViewModel.getPosterImage()
+                    self?.indicatorView.stopAnimating()
+                }
+                
             }
         })
     }
