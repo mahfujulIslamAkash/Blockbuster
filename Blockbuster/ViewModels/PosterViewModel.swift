@@ -60,11 +60,11 @@ class PosterViewModel{
             
         }
     }
-    func getPosterImage() -> UIImage{
+    func getPosterImage() -> UIImage?{
         if let image = poster{
             return image
         }else{
-            return UIImage()
+            return nil
         }
     }
 }

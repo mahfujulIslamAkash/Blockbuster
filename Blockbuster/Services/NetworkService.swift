@@ -36,7 +36,6 @@ final class NetworkService{
                 if let data = data{
                     do {
                         if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                            print("json: ", json)
                             // Accessing the entire JSON dictionary
                             if let dataArray = json["genres"] as? [[String: Any]] {
                                 if dataArray.isEmpty{

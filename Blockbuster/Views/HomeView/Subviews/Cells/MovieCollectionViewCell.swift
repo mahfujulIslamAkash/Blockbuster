@@ -11,14 +11,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     var posterViewModel = PosterViewModel()
     
-    let title: UILabel = {
-        let label = UILabel()
-        label.text = "Movie"
-        label.backgroundColor = .white
-        label.textColor = .black
-        return label
-    }()
-    
     let indicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.hidesWhenStopped = true
@@ -29,7 +21,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     lazy var moviePoster: UIImageView = {
         let view = UIImageView()
         view.layer.borderColor = UIColor.white.withAlphaComponent(0.3).cgColor
-        
         view.layer.borderWidth = 0.5
         view.layer.cornerRadius = 4
         view.layer.masksToBounds = true
@@ -38,25 +29,12 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-//        backgroundColor = .green
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     func updateUI(_ name: String, _ endpoint: String){
         addSubview(moviePoster)
         moviePoster.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
         
         addSubview(indicatorView)
         indicatorView.fillSuperview()
-//        addSubview(title)
-//        title.anchorView(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
-//        title.text = name
-        
         setupObservers()
         
     }
@@ -85,7 +63,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
         posterViewModel.isLoaded.binds({[weak self] success in
             if success{
                 DispatchQueue.main.async {[weak self] in
-                    self?.moviePoster.image = self?.posterViewModel.getPosterImage()
+                    if let image = self?.posterViewModel.getPosterImage(){
+                        self?.moviePoster.image = image
+                    }
                     self?.indicatorView.stopAnimating()
                 }
                 

@@ -26,7 +26,6 @@ class MainTableViewCell: UITableViewCell {
         view.dataSource = self
         view.backgroundColor = .clear
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        view.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         view.showsHorizontalScrollIndicator = false
         return view
     }()
@@ -39,7 +38,6 @@ class MainTableViewCell: UITableViewCell {
         view.delegate = self
         view.dataSource = self
         view.backgroundColor = .clear
-//        view.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10)
         view.showsHorizontalScrollIndicator = false
         return view
     }()
@@ -78,11 +76,6 @@ class MainTableViewCell: UITableViewCell {
     
     let movieViewModel = MovieViewModel()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        
-    }
     
     func allMoviesUI(){
         backgroundColor = .clear
@@ -163,7 +156,8 @@ class MainTableViewCell: UITableViewCell {
     /// Handle loading animation
     private func loadingAnimation(_ isLoading: Bool) {
         if isLoading {
-            if let genre = movieViewModel.lastGenre{
+            if let _ = movieViewModel.lastGenre{
+                //if having gener that means already categories data loaded
                 DispatchQueue.main.async {[weak self] in
                     self?.moviesCollection.layer.opacity = 0
                     self?.indicatorView.startAnimating()
@@ -176,7 +170,8 @@ class MainTableViewCell: UITableViewCell {
                 }
             }
         }else {
-            if let genre = movieViewModel.lastGenre{
+            if let _ = movieViewModel.lastGenre{
+                //if having gener that means already categories data loaded
                 DispatchQueue.main.async {[weak self] in
                     self?.moviesCollection.layer.opacity = 1
                     self?.indicatorView.stopAnimating()

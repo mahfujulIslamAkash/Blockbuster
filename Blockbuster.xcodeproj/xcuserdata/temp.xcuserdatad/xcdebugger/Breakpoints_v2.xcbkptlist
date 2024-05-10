@@ -23,69 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8BD594A3-AD07-4E9A-A65B-BA1FB2C95AF8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "awakeFromNib()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8BD594A3-AD07-4E9A-A65B-BA1FB2C95AF8 - e0959c30f8e4f14f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Blockbuster.MainTableViewCell.allMoviesUI() -&gt; ()"
-                  moduleName = "Blockbuster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "84"
-                  endingLineNumber = "84"
-                  offsetFromSymbolStart = "556">
-               </Location>
-               <Location
-                  uuid = "8BD594A3-AD07-4E9A-A65B-BA1FB2C95AF8 - da35467b57981938"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Blockbuster.MainTableViewCell.awakeFromNib() -&gt; ()"
-                  moduleName = "Blockbuster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  uuid = "8BD594A3-AD07-4E9A-A65B-BA1FB2C95AF8 - da35467b5798191b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Blockbuster.MainTableViewCell.awakeFromNib() -&gt; ()"
-                  moduleName = "Blockbuster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "85"
-                  endingLineNumber = "85"
-                  offsetFromSymbolStart = "76">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "272D9344-F9A0-4074-BEDF-831DA253F8D4"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -109,8 +46,8 @@
             filePath = "Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "setupLoadedObserver()"
             landmarkType = "7">
             <Locations>
