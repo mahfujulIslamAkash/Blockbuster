@@ -16,15 +16,14 @@ class MovieViewModel{
     
     var categories: [Category]?
     var movies: [Movie]?
-    
-//    var genreMovies: [Movie]?
-    
+        
     var isLoaded: ObservableObject<Bool?> = ObservableObject(nil)
     var isMoviesLoaded: ObservableObject<Bool?> = ObservableObject(nil)
     var isLoading: ObservableObject<Bool> = ObservableObject(true)
     var error: ObservableObject<Bool?> = ObservableObject(nil)
     
     var cellType: CellType = .all
+    
     func initiate(_ cellType: CellType = .all){
         self.cellType = cellType
         callApi()

@@ -12,6 +12,7 @@ class PosterViewModel{
     init(_ endpoint: String? = nil){
         self.endpoint = endpoint
     }
+    
     static var shared = NetworkService()
     var poster: UIImage?
     var isLoaded: ObservableObject<Bool> = ObservableObject(false)
@@ -22,27 +23,37 @@ class PosterViewModel{
     func getPoster(){
         if let endpoint = endpoint{
             isLoading.value = true
-            PosterViewModel.shared.getImageData(endpoint, completion: {[weak self] sucess, data in
-                if sucess{
-                    if let data = data{
-                        if let image = UIImage(data: data){
-                            self?.poster = image
-                            self?.isLoaded.value = true
-                            self?.isLoading.value = false
+            if let image = ImageCachingService.shared.havingThisImage(endpoint){
+                poster = image
+                isLoaded.value = true
+                isLoading.value = false
+            }else{
+                
+                PosterViewModel.shared.getImageData(endpoint, completion: {[weak self] sucess, data in
+                    if sucess{
+                        if let data = data{
+                            ImageCachingService.shared.cacheImage(endpoint, data: data)
+                            if let image = UIImage(data: data){
+                                self?.poster = image
+                                self?.isLoaded.value = true
+                                self?.isLoading.value = false
+                            }
+                            else{
+                                self?.isLoading.value = false
+                            }
                         }
                         else{
                             self?.isLoading.value = false
                         }
+                        
                     }
                     else{
                         self?.isLoading.value = false
                     }
-                    
-                }
-                else{
-                    self?.isLoading.value = false
-                }
-            })
+                })
+            }
+            
+            
         }
         
     }
