@@ -15,7 +15,8 @@ class MovieViewModel{
     private var limit: Int = 20
     
     var categories: [Category]?
-    var movies: [Movie]?
+    private var currentSelection = 0
+    private var movies: [Movie]?
         
     var isLoaded: ObservableObject<Bool?> = ObservableObject(nil)
     var isMoviesLoaded: ObservableObject<Bool?> = ObservableObject(nil)
@@ -34,6 +35,12 @@ class MovieViewModel{
         }else{
             return []
         }
+    }
+    func getCurrentSelection() -> Int{
+        return currentSelection
+    }
+    func updateSelection(_ indexPath: IndexPath){
+        currentSelection = indexPath.row
     }
     func getCountOfCategories() -> Int{
         return getCategories().count

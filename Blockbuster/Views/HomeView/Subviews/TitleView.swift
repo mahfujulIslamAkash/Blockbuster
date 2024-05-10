@@ -23,8 +23,6 @@ class TitleView: UIView {
         let view = UIButton()
         view.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         view.tintColor = .white
-        view.widthAnchor.constraint(equalToConstant: motherSize.height).isActive = true
-//        view.backgroundColor = UIColor(hexString: "FF2DAF")
         return view
     }()
     

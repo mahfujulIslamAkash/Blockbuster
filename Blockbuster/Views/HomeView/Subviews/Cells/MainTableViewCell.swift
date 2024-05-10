@@ -189,7 +189,7 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == categoriesCollection{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
-            cell.setupTitleUI(movieViewModel.getTitle(indexPath), indexPath.row == 0 ? true : false)
+            cell.setupTitleUI(movieViewModel.getTitle(indexPath), movieViewModel.getCurrentSelection() == indexPath.row)
             
             return cell
         }else{
@@ -205,9 +205,18 @@ extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
         if collectionView == categoriesCollection{
             return CGSize(width: 90, height: 30)
         }else{
-            return CGSize(width: 90, height: 170)
+            return CGSize(width: 110, height: 170)
         }
         
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == categoriesCollection{
+            let oldPath = IndexPath(row: movieViewModel.getCurrentSelection(), section: indexPath.section)
+            movieViewModel.updateSelection(indexPath)
+            collectionView.reloadItems(at: [oldPath, indexPath])
+
+        }else{
+        }
     }
 }
 

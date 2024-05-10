@@ -216,8 +216,8 @@
 		2486D7972BEE1C9400FA5EEF /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				2486D7A12BEE250B00FA5EEF /* Cells */,
 				2486D7932BEE1A1E00FA5EEF /* TitleView.swift */,
+				2486D7A12BEE250B00FA5EEF /* Cells */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";

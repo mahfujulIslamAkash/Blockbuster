@@ -65,6 +65,21 @@
                   endingLineNumber = "86"
                   offsetFromSymbolStart = "76">
                </Location>
+               <Location
+                  uuid = "8BD594A3-AD07-4E9A-A65B-BA1FB2C95AF8 - da35467b5798191b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Blockbuster.MainTableViewCell.awakeFromNib() -&gt; ()"
+                  moduleName = "Blockbuster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/temp/Desktop/Blockbuster/Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "76">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -192,6 +207,22 @@
             startingLineNumber = "44"
             endingLineNumber = "44"
             landmarkName = "havingThisImage(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F9381A1-ADE0-424D-8BC5-56434C043DE8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
