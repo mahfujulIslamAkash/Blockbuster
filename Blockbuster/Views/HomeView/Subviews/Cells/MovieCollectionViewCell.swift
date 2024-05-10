@@ -29,7 +29,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    func updateUI(_ name: String, _ endpoint: String){
+    func updateUI(){
         addSubview(moviePoster)
         moviePoster.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
         
@@ -49,14 +49,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     func getPoster(){
         posterViewModel.getPoster()
     }
-    
-//    private func updateUI(){
-//        DispatchQueue.main.async {[weak self] in
-//            self?.moviePoster.image = self?.posterViewModel.getPosterImage()
-//            self?.indicatorView.stopAnimating()
-//        }
-//        
-//    }
     
     /// Set up observer for data loaded state
     private func setupLoadedObserver() {
