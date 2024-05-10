@@ -53,9 +53,9 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         addSubview(indicatorView)
         indicatorView.fillSuperview()
-        addSubview(title)
-        title.anchorView(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
-        title.text = name
+//        addSubview(title)
+//        title.anchorView(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+//        title.text = name
         
         setupObservers()
         

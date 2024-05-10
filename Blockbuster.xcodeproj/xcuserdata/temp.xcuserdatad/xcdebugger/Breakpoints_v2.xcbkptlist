@@ -30,8 +30,8 @@
             filePath = "Blockbuster/Views/HomeView/Subviews/Cells/MainTableViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "awakeFromNib()"
             landmarkType = "7">
             <Locations>

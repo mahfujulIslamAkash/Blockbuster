@@ -26,10 +26,12 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func setupTitleUI(_ category: String, _ isSelected: Bool){
+        backgroundColor = .clear
         title.text = category
         addSubview(title)
         title.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
         title.layer.cornerRadius = isSelected ? 16 : 0
         title.backgroundColor = isSelected ? UIColor.systemPink : UIColor.clear
+        title.textColor = isSelected ? UIColor.white : UIColor.white.withAlphaComponent(0.3)
     }
 }

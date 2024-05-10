@@ -8,12 +8,12 @@
 import UIKit
 
 class MainTableViewCell: UITableViewCell {
-
-//    let categories: [String] = ["A", "B", "C", "A", "B", "C", "A", "B", "C", "A", "B", "C", "A", "B", "C"]
     
     let title: UILabel = {
         let label = UILabel()
-        label.text = "Popular"
+        label.text = "Most Popular"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.textColor = .white
         return label
     }()
     
@@ -24,9 +24,9 @@ class MainTableViewCell: UITableViewCell {
         view.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: "categoryCell")
         view.delegate = self
         view.dataSource = self
-        view.backgroundColor = .yellow
+        view.backgroundColor = .clear
         view.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        view.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+//        view.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         view.showsHorizontalScrollIndicator = false
         return view
     }()
@@ -38,8 +38,8 @@ class MainTableViewCell: UITableViewCell {
         view.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: "movieCell")
         view.delegate = self
         view.dataSource = self
-        view.backgroundColor = .black
-        view.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        view.backgroundColor = .clear
+//        view.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 10)
         view.showsHorizontalScrollIndicator = false
         return view
     }()
@@ -59,11 +59,10 @@ class MainTableViewCell: UITableViewCell {
         stack.axis = .vertical
         stack.alignment = .fill
         stack.spacing = 0
-        stack.layer.borderWidth = 0.5
         stack.addSubview(indicatorView)
         indicatorView.centerX(inView: stack)
         indicatorView.centerY(inView: stack)
-        stack.backgroundColor = .red
+        stack.backgroundColor = .clear
         return stack
     }()
     
@@ -86,8 +85,9 @@ class MainTableViewCell: UITableViewCell {
     }
     
     func allMoviesUI(){
+        backgroundColor = .clear
         addSubview(stackView)
-        stackView.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        stackView.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 15)
         
         stackView.addArrangedSubview(categoriesCollection)
         stackView.addArrangedSubview(moviesCollection)
@@ -96,8 +96,9 @@ class MainTableViewCell: UITableViewCell {
         
     }
     func popularMoviesUI(){
+        backgroundColor = .clear
         addSubview(stackView)
-        stackView.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        stackView.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 15)
         
         stackView.addArrangedSubview(title)
         stackView.addArrangedSubview(moviesCollection)

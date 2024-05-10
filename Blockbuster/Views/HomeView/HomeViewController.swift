@@ -28,6 +28,8 @@ class HomeViewController: UIViewController {
         view.dataSource = self
         view.refreshControl = refreshControl
         view.showsVerticalScrollIndicator = false
+        view.backgroundColor = UIColor(hexString: "262736")
+        view.separatorStyle = .none
         return view
     }()
     
@@ -39,7 +41,6 @@ class HomeViewController: UIViewController {
         stack.spacing = 15
         stack.addArrangedSubview(titleView)
         stack.addArrangedSubview(tableView)
-        stack.layer.borderWidth = 0.5
         return stack
     }()
     
@@ -48,7 +49,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .green
+        view.backgroundColor = UIColor(hexString: "3B2050")
         view.addSubview(stackView)
         stackView.anchorView(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, paddingTop: 60)
     }
