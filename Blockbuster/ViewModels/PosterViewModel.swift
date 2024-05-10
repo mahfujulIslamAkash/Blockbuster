@@ -23,39 +23,42 @@ class PosterViewModel{
     func getPoster(){
         if let endpoint = endpoint{
             isLoading.value = true
-            if let image = ImageCachingService.shared.havingThisImage(endpoint){
-                poster = image
-                isLoaded.value = true
-                isLoading.value = false
-            }else{
-                
-                PosterViewModel.shared.getImageData(endpoint, completion: {[weak self] sucess, data in
-                    if sucess{
-                        if let data = data{
-                            ImageCachingService.shared.cacheImage(endpoint, data: data)
-                            if let image = UIImage(data: data){
-                                self?.poster = image
-                                self?.isLoaded.value = true
-                                self?.isLoading.value = false
+            ImageCachingService.shared.havingThisImage(endpoint, completion: {[weak self] image in
+                if let image = image{
+                    self?.poster = image
+                    self?.isLoaded.value = true
+                    self?.isLoading.value = false
+                }else{
+                    
+                    PosterViewModel.shared.getImageData(endpoint, completion: {[weak self] sucess, data in
+                        if sucess{
+                            if let data = data{
+                                ImageCachingService.shared.cacheImage(endpoint, data: data)
+                                if let image = UIImage(data: data){
+                                    self?.poster = image
+                                    self?.isLoaded.value = true
+                                    self?.isLoading.value = false
+                                }
+                                else{
+                                    self?.isLoading.value = false
+                                }
                             }
                             else{
                                 self?.isLoading.value = false
                             }
+                            
                         }
                         else{
                             self?.isLoading.value = false
                         }
-                        
-                    }
-                    else{
-                        self?.isLoading.value = false
-                    }
-                })
-            }
-            
+                    })
+                    
+                }
+                
+                
+            })
             
         }
-        
     }
     func getPosterImage() -> UIImage{
         if let image = poster{

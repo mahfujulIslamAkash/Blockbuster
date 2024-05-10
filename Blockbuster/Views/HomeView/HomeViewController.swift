@@ -62,7 +62,6 @@ class HomeViewController: UIViewController {
     @objc func refreshData(_ sender: Any) {
         tableView.reloadData()
         refreshControl.endRefreshing()
-        tableView.isUserInteractionEnabled = false
     }
 
 
