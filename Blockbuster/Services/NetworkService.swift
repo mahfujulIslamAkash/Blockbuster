@@ -25,7 +25,7 @@ final class NetworkService{
         
         var request = URLRequest(url: components.url!)
         request.httpMethod = "GET"
-        request.timeoutInterval = 10
+//        request.timeoutInterval = 10
         request.allHTTPHeaderFields = [
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjFlZmMyMGE4MTU2MjM2ZDI3NGVkNTMyOWQ1ZGM0MSIsInN1YiI6IjY2M2UwOTYwZGRlZjY0MjhlNzBmYTcwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wOGh6PlteVpFEH8GnWILB1495eRl4Lv8KCNWiCzp0bQ"
@@ -94,7 +94,7 @@ final class NetworkService{
         
         var request = URLRequest(url: components.url!)
         request.httpMethod = "GET"
-        request.timeoutInterval = 10
+//        request.timeoutInterval = 10
         request.allHTTPHeaderFields = [
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjFlZmMyMGE4MTU2MjM2ZDI3NGVkNTMyOWQ1ZGM0MSIsInN1YiI6IjY2M2UwOTYwZGRlZjY0MjhlNzBmYTcwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wOGh6PlteVpFEH8GnWILB1495eRl4Lv8KCNWiCzp0bQ"
@@ -144,7 +144,7 @@ final class NetworkService{
         
         var request = URLRequest(url: components.url!)
         request.httpMethod = "GET"
-        request.timeoutInterval = 10
+//        request.timeoutInterval = 10
         request.allHTTPHeaderFields = [
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjFlZmMyMGE4MTU2MjM2ZDI3NGVkNTMyOWQ1ZGM0MSIsInN1YiI6IjY2M2UwOTYwZGRlZjY0MjhlNzBmYTcwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wOGh6PlteVpFEH8GnWILB1495eRl4Lv8KCNWiCzp0bQ"
@@ -183,7 +183,7 @@ final class NetworkService{
     func getImageData(_ endpoint: String, completion: @escaping(_ success: Bool, _ data: Data?)-> Void){
         var request = URLRequest(url: URL(string: "https://image.tmdb.org/t/p/original"+endpoint)!)
         request.httpMethod = "GET"
-        request.timeoutInterval = 10
+//        request.timeoutInterval = 10
         request.allHTTPHeaderFields = [
             "accept": "application/json",
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MjFlZmMyMGE4MTU2MjM2ZDI3NGVkNTMyOWQ1ZGM0MSIsInN1YiI6IjY2M2UwOTYwZGRlZjY0MjhlNzBmYTcwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wOGh6PlteVpFEH8GnWILB1495eRl4Lv8KCNWiCzp0bQ"
