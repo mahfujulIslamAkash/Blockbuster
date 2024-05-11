@@ -8,42 +8,51 @@
 import Foundation
 import UIKit
 
-final class ImageCachingService{
+final class ImageCachingService {
     static var shared = ImageCachingService()
-    var image: UIImage?
     let imageCache = NSCache<AnyObject, AnyObject>()
     
-    //caching using NSCache
-//    func havingThisImage(_ enpoint: String) -> UIImage?{
-//        if let imageFromCache = imageCache.object(forKey: enpoint as AnyObject) as? UIImage {
+    // MARK: - Caching using NSCache (Alternative Method)
+    
+//    /// Retrieves the cached image for the given endpoint from the NSCache.
+//    ///
+//    /// - Parameter endpoint: The endpoint of the image.
+//    /// - Returns: The cached image if available, otherwise nil.
+//    func havingThisImage(_ endpoint: String) -> UIImage? {
+//        if let imageFromCache = imageCache.object(forKey: endpoint as AnyObject) as? UIImage {
 //            return imageFromCache
-//        }else{
+//        } else {
 //            return nil
 //        }
 //    }
-//    
-//    func cacheImage(_ enpoint: String, data: Data){
-//        DispatchQueue.main.async {[weak self] in
+//
+//    /// Caches the image data for the given endpoint using NSCache.
+//    ///
+//    /// - Parameters:
+//    ///   - endpoint: The endpoint of the image.
+//    ///   - data: The image data to be cached.
+//    func cacheImage(_ endpoint: String, data: Data) {
+//        DispatchQueue.main.async { [weak self] in
 //            let imageToCache = UIImage(data: data)
-//            self?.imageCache.setObject(imageToCache!, forKey: enpoint as AnyObject)
-//            self?.image = imageToCache
+//            self?.imageCache.setObject(imageToCache!, forKey: endpoint as AnyObject)
 //        }
 //    }
     
-    //caching using local file manager
+    // MARK: - Caching using FileManager
+    
+    /// Retrieves the cached image for the given endpoint.
+    ///
+    /// - Parameters:
+    ///   - endpoint: The endpoint of the image.
+    ///   - completion: A closure to be called when the image retrieval is complete, containing the cached image.
     func havingThisImage(_ endpoint: String, completion: @escaping (UIImage?) -> Void) {
         DispatchQueue.global(qos: .background).async {
             let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-
-            // Append filename to the document directory URL
             let fileURL = documentsDirectory.appendingPathComponent(endpoint)
-
             do {
-                // Read data from file
                 let imageData = try Data(contentsOf: fileURL)
                 let image = UIImage(data: imageData)
                 completion(image)
-                
             } catch {
                 print("Error getting image data from file:", error)
                 DispatchQueue.main.async {
@@ -53,22 +62,20 @@ final class ImageCachingService{
         }
     }
 
-    
-    func cacheImage(_ enpoint: String, data: Data){
+    /// Caches the image data for the given endpoint.
+    ///
+    /// - Parameters:
+    ///   - endpoint: The endpoint of the image.
+    ///   - data: The image data to be cached.
+    func cacheImage(_ endpoint: String, data: Data) {
         DispatchQueue.global(qos: .background).async {
-            // Get the document directory URL
             let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            
-            // Append filename to the document directory URL
-            let fileURL = documentsDirectory.appendingPathComponent(enpoint)
-            
+            let fileURL = documentsDirectory.appendingPathComponent(endpoint)
             do {
-                // Write data to file
                 try data.write(to: fileURL)
             } catch {
                 print("Error saving image to file:", error)
             }
         }
-        
     }
 }

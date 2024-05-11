@@ -8,6 +8,9 @@
 import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Properties
+    
     let title: UILabel = {
         let label = UILabel()
         label.text = "Movie"
@@ -17,6 +20,9 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         label.layer.masksToBounds = true
         return label
     }()
+    
+    // MARK: - Initialization
+    
     override init(frame: CGRect) {
         // Initialize your cell as usual
         super.init(frame: frame)
@@ -25,7 +31,15 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setupTitleUI(_ category: String, _ isSelected: Bool){
+    
+    // MARK: - Methods
+    
+    /// Sets up the UI for the category cell
+    ///
+    /// - Parameters:
+    ///   - category: The category name to display
+    ///   - isSelected: A Boolean value indicating whether the category is selected
+    func setupTitleUI(_ category: String, _ isSelected: Bool) {
         backgroundColor = .clear
         title.text = category
         addSubview(title)

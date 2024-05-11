@@ -5,17 +5,22 @@
 //  Created by Temp on 10/5/24.
 //
 
-
 import Foundation
 import UIKit
 
-class HomeViewModel {
+final class HomeViewModel {
     
     static var shared = NetworkService()
+    
     // MARK: - Observable Properties
     
+    /// Observable property to track whether data is loaded
     var isLoaded: ObservableObject<Bool?> = ObservableObject(nil)
+    
+    /// Observable property to track loading state
     var isLoading: ObservableObject<Bool> = ObservableObject(true)
+    
+    /// Observable property to track error state
     var error: ObservableObject<Bool?> = ObservableObject(nil)
     
     // MARK: - Methods
@@ -32,27 +37,30 @@ class HomeViewModel {
     }
  
     
-    // MARK: - Collection View Methods
+    // MARK: - Table View Methods
     
-    /// Returns the configured cell for the collection view
+    /// Returns the configured cell for the table view
     func getCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! MainTableViewCell
-        if indexPath.row == 0{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath) as! MovieTableViewCell
+        if indexPath.row == 0 {
             cell.type = .all
-        }else{
+        } else {
             cell.type = .popular
         }
         return cell
     }
-    func getTableCellHeight(_ indexPath: IndexPath)-> CGFloat{
-        if indexPath.row == 0{
+    
+    /// Returns the height for the table view cell at the specified index path
+    func getTableCellHeight(_ indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
             return 250
-        }else{
+        } else {
             return 220
         }
     }
-    func getCellCount() -> Int{
+    
+    /// Returns the number of cells in the table view
+    func getCellCount() -> Int {
         return 2
     }
-    
 }

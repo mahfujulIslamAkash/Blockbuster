@@ -9,6 +9,8 @@ import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Properties
+    
     var posterViewModel = PosterViewModel()
     
     let indicatorView: UIActivityIndicatorView = {
@@ -29,70 +31,70 @@ class MovieCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    func updateUI(){
+    // MARK: - Methods
+    
+    /// Updates the UI with movie poster and loading indicator
+    func updateUI() {
         addSubview(moviePoster)
         moviePoster.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
         
         addSubview(indicatorView)
         indicatorView.fillSuperview()
         setupObservers()
-        
     }
     
+    /// Sets up observers for data loading states
     func setupObservers() {
         setupLoadedObserver()
         setupIsLoadingObserver()
         setupErrorObserver()
         getPoster()
-        
     }
-    func getPoster(){
+    
+    /// Fetches the movie poster
+    func getPoster() {
         posterViewModel.getPoster()
     }
     
-    /// Set up observer for data loaded state
+    /// Sets up observer for data loaded state
     private func setupLoadedObserver() {
-        posterViewModel.isLoaded.binds({[weak self] success in
-            if success{
-                DispatchQueue.main.async {[weak self] in
-                    if let image = self?.posterViewModel.getPosterImage(){
+        posterViewModel.isLoaded.binds({ [weak self] success in
+            if success {
+                DispatchQueue.main.async { [weak self] in
+                    if let image = self?.posterViewModel.getPosterImage() {
                         self?.moviePoster.image = image
                     }
                     self?.indicatorView.stopAnimating()
                 }
-                
             }
         })
     }
     
-    
-    /// Set up observer for loading state
+    /// Sets up observer for loading state
     private func setupIsLoadingObserver() {
-        posterViewModel.isLoading.binds({[weak self] isLoading in
+        posterViewModel.isLoading.binds({ [weak self] isLoading in
             self?.loadingAnimation(isLoading)
         })
     }
     
-    /// Set up observer for error state
+    /// Sets up observer for error state
     private func setupErrorObserver() {
-        posterViewModel.error.binds({[weak self] error in
+        posterViewModel.error.binds({ [weak self] error in
             if let _ = error {
                 self?.loadingAnimation(false)
             }
         })
     }
     
-    // MARK: - Loading View
-    
-    /// Handle loading animation
+    /// Handles loading animation
     private func loadingAnimation(_ isLoading: Bool) {
         if isLoading {
-            DispatchQueue.main.async {[weak self] in
+            DispatchQueue.main.async { [weak self] in
                 self?.moviePoster.layer.opacity = 0
                 self?.indicatorView.startAnimating()
             }
         } else {
-            DispatchQueue.main.async {[weak self] in
+            DispatchQueue.main.async { [weak self] in
                 self?.moviePoster.layer.opacity = 1
                 self?.indicatorView.stopAnimating()
             }

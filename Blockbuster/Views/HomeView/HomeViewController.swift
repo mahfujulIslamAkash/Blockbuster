@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  Blockbuster
 //
 //  Created by Temp on 10/5/24.
@@ -8,6 +8,8 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    // MARK: - Properties
     
     lazy var titleView: TitleView = {
         let title = TitleView(motherSize: CGSize(width: view.frame.width, height: 65))
@@ -23,7 +25,7 @@ class HomeViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero)
-        view.register(MainTableViewCell.self, forCellReuseIdentifier: "tableCell")
+        view.register(MovieTableViewCell.self, forCellReuseIdentifier: "tableCell")
         view.delegate = self
         view.dataSource = self
         view.refreshControl = refreshControl
@@ -46,29 +48,40 @@ class HomeViewController: UIViewController {
     
     let homeViewModel = HomeViewModel()
 
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Set background color
         view.backgroundColor = UIColor(hexString: "3B2050")
+        
+        // Add stack view to view hierarchy
         view.addSubview(stackView)
         stackView.anchorView(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, paddingTop: 60)
     }
     
+    // MARK: - Actions
     
     /// Action when search button is tapped
     @objc func searchTapped() {
-//        let _ = homeViewModel.SearchAction(customSearchField.textFieldView)
+        // Not implemented yet
+        // Implement search functionality here
     }
     
+    /// Action when pull-to-refresh is triggered
     @objc func refreshData(_ sender: Any) {
+        // Reload table view data and end refreshing
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
-
-
 }
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeViewModel.getCellCount()
     }
@@ -80,7 +93,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return homeViewModel.getTableCellHeight(indexPath)
     }
-    
-    
-    
 }

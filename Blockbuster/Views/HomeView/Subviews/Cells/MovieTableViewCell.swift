@@ -7,7 +7,9 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+class MovieTableViewCell: UITableViewCell {
+    
+    // MARK: - Properties
     
     let title: UILabel = {
         let label = UILabel()
@@ -17,7 +19,9 @@ class MainTableViewCell: UITableViewCell {
         return label
     }()
     
+    // Collection view for displaying categories
     lazy var categoriesCollection: UICollectionView = {
+        // Collection view setup
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -30,7 +34,9 @@ class MainTableViewCell: UITableViewCell {
         return view
     }()
     
+    // Collection view for displaying movies
     lazy var moviesCollection: UICollectionView = {
+        // Collection view setup
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -64,11 +70,12 @@ class MainTableViewCell: UITableViewCell {
         return stack
     }()
     
-    var type: CellType = .all{
-        didSet{
-            if type == .all{
+    var type: CellType = .all {
+        didSet {
+            // Update UI based on cell type
+            if type == .all {
                 allMoviesUI()
-            }else{
+            } else {
                 popularMoviesUI()
             }
         }
@@ -76,164 +83,190 @@ class MainTableViewCell: UITableViewCell {
     
     let movieViewModel = MovieViewModel()
     
+    // MARK: - Setup Methods
     
-    func allMoviesUI(){
+    /// Configure UI for displaying all movies
+    func allMoviesUI() {
         backgroundColor = .clear
         addSubview(stackView)
         stackView.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 15)
         
+        // Add categories and movies collection views
         stackView.addArrangedSubview(categoriesCollection)
         stackView.addArrangedSubview(moviesCollection)
+        
+        // Set up observers and initiate API call
         setupObservers()
         movieViewModel.initiate(.all)
-        
     }
-    func popularMoviesUI(){
+    
+    /// Configure UI for displaying popular movies
+    func popularMoviesUI() {
         backgroundColor = .clear
         addSubview(stackView)
         stackView.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 15)
         
+        // Add title and movies collection views
         stackView.addArrangedSubview(title)
         stackView.addArrangedSubview(moviesCollection)
+        
+        // Set up observers and initiate API call
         setupObservers()
         movieViewModel.initiate(.popular)
     }
     
+    // MARK: - Observers
+    
+    /// Set up observers for data loading, error, and loading state
     private func setupObservers() {
         setupLoadedObserver()
         setupLoadedObserverForMovies()
         setupIsLoadingObserver()
         setupErrorObserver()
     }
-    
+    // MARK: - Observer Setup
+
     /// Set up observer for data loaded state
     private func setupLoadedObserver() {
-        movieViewModel.isLoaded.binds({[weak self] success in
-            if let success = success {
-                if success{
-                    DispatchQueue.main.async {
-                        self?.categoriesCollection.reloadData()
-                    }
+        movieViewModel.isLoaded.binds { [weak self] success in
+            guard let self = self, let success = success else { return }
+            
+            // Check if data is successfully loaded
+            if success {
+                // Reload categoriesCollection on the main thread to update UI
+                DispatchQueue.main.async {
+                    self.categoriesCollection.reloadData()
                 }
-                
             }
-        })
+        }
     }
-    
+
+    /// Set up observer for data loaded state for movies
     private func setupLoadedObserverForMovies() {
-        movieViewModel.isMoviesLoaded.binds({[weak self] success in
-            if let success = success {
-                if success{
-                    DispatchQueue.main.async {
-                        self?.moviesCollection.reloadData()
-                    }
+        movieViewModel.isMoviesLoaded.binds { [weak self] success in
+            guard let self = self, let success = success else { return }
+            
+            // Check if movies data is successfully loaded
+            if success {
+                // Reload moviesCollection on the main thread to update UI
+                DispatchQueue.main.async {
+                    self.moviesCollection.reloadData()
                 }
-                
             }
-        })
+        }
     }
-    
-    
+
     /// Set up observer for loading state
     private func setupIsLoadingObserver() {
-        movieViewModel.isLoading.binds({[weak self] isLoading in
-            self?.loadingAnimation(isLoading)
-        })
+        movieViewModel.isLoading.binds { [weak self] isLoading in
+            guard let self = self else { return }
+            
+            // Trigger loading animation based on loading state
+            self.loadingAnimation(isLoading)
+        }
     }
-    
+
     /// Set up observer for error state
     private func setupErrorObserver() {
-        movieViewModel.error.binds({[weak self] error in
-            if let _ = error {
-                self?.loadingAnimation(false)
-                self?.movieViewModel.showingErrorToast()
-            }
-        })
+        movieViewModel.error.binds { [weak self] error in
+            guard let self = self, let _ = error else { return }
+            
+            // Stop loading animation and display error toast
+            self.loadingAnimation(false)
+            self.movieViewModel.showingErrorToast()
+        }
     }
+
     
-    // MARK: - Loading View
+    // MARK: - Loading Animation
     
     /// Handle loading animation
     private func loadingAnimation(_ isLoading: Bool) {
+        // Show or hide loading animation based on loading state
         if isLoading {
-            if let _ = movieViewModel.lastGenre{
-                //if having gener that means already categories data loaded
-                DispatchQueue.main.async {[weak self] in
+            if let _ = movieViewModel.lastGenre {
+                // Categories data already loaded, show movie collection loading animation
+                DispatchQueue.main.async { [weak self] in
                     self?.moviesCollection.layer.opacity = 0
                     self?.indicatorView.startAnimating()
-                    
                 }
-            }else{
-                DispatchQueue.main.async {[weak self] in
+            } else {
+                // Categories data not yet loaded, show stack view loading animation
+                DispatchQueue.main.async { [weak self] in
                     self?.stackView.layer.opacity = 0
                     self?.indicatorView.startAnimating()
                 }
             }
-        }else {
-            if let _ = movieViewModel.lastGenre{
-                //if having gener that means already categories data loaded
-                DispatchQueue.main.async {[weak self] in
+        } else {
+            if let _ = movieViewModel.lastGenre {
+                // Categories data already loaded, hide movie collection loading animation
+                DispatchQueue.main.async { [weak self] in
                     self?.moviesCollection.layer.opacity = 1
                     self?.indicatorView.stopAnimating()
-                    
                 }
-            }else{
-                DispatchQueue.main.async {[weak self] in
+            } else {
+                // Categories data not yet loaded, hide stack view loading animation
+                DispatchQueue.main.async { [weak self] in
                     self?.stackView.layer.opacity = 1
                     self?.indicatorView.stopAnimating()
                 }
             }
         }
-        }
-
+    }
 }
 
-extension MainTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+
+extension MovieTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == categoriesCollection{
+        if collectionView == categoriesCollection {
             return movieViewModel.getCountOfCategories()
-        }else{
+        } else {
             return movieViewModel.getCountOfMovies()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == categoriesCollection{
+        if collectionView == categoriesCollection {
+            // Configure category cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
             cell.setupTitleUI(movieViewModel.getTitle(indexPath), movieViewModel.getCurrentSelection() == indexPath.row)
-            
             return cell
-        }else{
+        } else {
+            // Configure movie cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieCollectionViewCell
             cell.posterViewModel = PosterViewModel(movieViewModel.getPosterEndpoint(indexPath))
             cell.setupObservers()
             cell.updateUI()
             return cell
         }
-        
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == categoriesCollection{
-            return CGSize(width: 90, height: 30)
-        }else{
-            return CGSize(width: 110, height: 170)
+        if collectionView == categoriesCollection {
+            return movieViewModel.getCategoryCellSize()
+        } else {
+            return movieViewModel.getMovieCellSize()
         }
-        
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == categoriesCollection{
+        if collectionView == categoriesCollection {
+            // Update selection and call API
             let oldPath = IndexPath(row: movieViewModel.getCurrentSelection(), section: indexPath.section)
             movieViewModel.updateSelection(indexPath)
             collectionView.reloadItems(at: [oldPath, indexPath])
-            
             movieViewModel.callApi(movieViewModel.getTitle(indexPath))
-
-        }else{
+        } else {
+            // Handle movie selection
         }
     }
 }
 
-enum CellType{
+// MARK: - Enum
+
+enum CellType {
     case all
     case popular
 }

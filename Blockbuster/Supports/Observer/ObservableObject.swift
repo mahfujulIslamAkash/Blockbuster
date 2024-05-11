@@ -5,6 +5,7 @@
 //  Created by Temp on 10/5/24.
 //  This observableObject more easy to use and easy to customise
 //  This object will act or work for combine/observe VM/RxSwift
+//  I preffer to use custom binds, and is easy to replace with combine
 
 import Foundation
 
