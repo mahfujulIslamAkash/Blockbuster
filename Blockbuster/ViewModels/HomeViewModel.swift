@@ -35,6 +35,13 @@ final class HomeViewModel {
             }
         })
     }
+    
+    /// Shows an error toast message
+    func showingErrorToast(_ message: String = "Error") {
+        DispatchQueue.main.async {
+            UIView.shared.showingToast(message)
+        }
+    }
  
     
     // MARK: - Table View Methods

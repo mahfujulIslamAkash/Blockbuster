@@ -130,7 +130,10 @@ final class MovieViewModel{
                     self?.isLoading.value = false
                     self?.isMoviesLoaded.value = true
                 }
+            }else{
+                self?.error.value = true
             }
+                
         })
     }
     
@@ -143,6 +146,8 @@ final class MovieViewModel{
                     self?.isLoading.value = false
                     self?.isMoviesLoaded.value = true
                 }
+            }else{
+                self?.error.value = true
             }
         })
     }
@@ -156,32 +161,41 @@ final class MovieViewModel{
                     self?.isLoading.value = false
                     self?.isLoaded.value = true
                 }
+            }else{
+                self?.error.value = true
             }
         })
     }
     
     
     func callApi(_ genre: String?) {
+        MovieViewModel.shared.checkConnectivity(completion: {[weak self] success in
+            if success{
+                self?.lastGenre = genre
+                self?.isLoading.value = true
+                
+                // Fetches movies based on the specified genre or cell type
+                if let genre = genre {
+                    if self?.cellType == .all {
+                        self?.getGenreMovies(genre)
+                    } else {
+                        self?.getPopular()
+                    }
+                } else {
+                    // Fetches all categories and movies if no genre is specified
+                    self?.getAllCategories()
+                    if self?.cellType == .all {
+                        self?.getGenreMovies()
+                    } else {
+                        self?.getPopular()
+                    }
+                }
+            }else{
+                self?.error.value = true
+            }
+        })
         // Sets the last genre and starts loading state
-        lastGenre = genre
-        isLoading.value = true
         
-        // Fetches movies based on the specified genre or cell type
-        if let genre = genre {
-            if cellType == .all {
-                getGenreMovies(genre)
-            } else {
-                getPopular()
-            }
-        } else {
-            // Fetches all categories and movies if no genre is specified
-            getAllCategories()
-            if cellType == .all {
-                getGenreMovies()
-            } else {
-                getPopular()
-            }
-        }
     }
     
     /// Shows an error toast message

@@ -309,3 +309,24 @@ extension UIView{
         showingToast()
     }
 }
+
+extension UIViewController {
+    func showAlert(title: String, message: String, viewController: UIViewController) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+//            completionHandler?()
+            NetworkService.shared.checkConnectivity(completion: {[weak self] success in
+                if !success{
+                    self?.showAlert()
+                }
+            })
+        }
+        alertController.addAction(okAction)
+        
+        viewController.present(alertController, animated: true, completion: nil)
+    }
+    func showAlert() {
+        showAlert(title: "Alert", message: "This is a sample alert.", viewController: self)
+    }
+}

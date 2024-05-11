@@ -54,7 +54,7 @@ final class ImageCachingService {
                 let image = UIImage(data: imageData)
                 completion(image)
             } catch {
-                print("Error getting image data from file:", error)
+//                print("Error getting image data from file:", error)
                 DispatchQueue.main.async {
                     completion(nil)
                 }
@@ -74,7 +74,7 @@ final class ImageCachingService {
             do {
                 try data.write(to: fileURL)
             } catch {
-                print("Error saving image to file:", error)
+//                print("Error saving image to file:", error)
             }
         }
     }

@@ -11,9 +11,9 @@ class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    lazy var titleView: TitleView = {
-        let title = TitleView(motherSize: CGSize(width: view.frame.width, height: 65))
-        title.seachButton.addTarget(self, action: #selector(searchTapped), for: .touchDown)
+    lazy var titleView: TopView = {
+        let title = TopView(motherSize: CGSize(width: view.frame.width, height: 65))
+        title.searchButton.addTarget(self, action: #selector(searchTapped), for: .touchDown)
         return title
     }()
     
@@ -60,6 +60,14 @@ class HomeViewController: UIViewController {
         // Add stack view to view hierarchy
         view.addSubview(stackView)
         stackView.anchorView(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, paddingTop: 60)
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        NetworkService.shared.checkConnectivity(completion: {[weak self] success in
+            if !success{
+                self?.showAlert()
+            }
+        })
     }
     
     // MARK: - Actions
