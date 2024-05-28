@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let navController = UINavigationController(rootViewController: HomeViewController())
+        let navController = UINavigationController(rootViewController: getRootController(window))
         navController.navigationBar.isHidden = true
         
         window.rootViewController = navController
@@ -53,6 +53,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+    func getRootController(_ window: UIWindow) -> UIViewController{
+        let frame = window.screen.bounds
+        let rootController = UIViewController()
+        rootController.view = HomeView(frame)
+        return rootController
     }
 
 

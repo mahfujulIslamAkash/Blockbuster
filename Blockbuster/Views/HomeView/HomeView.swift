@@ -1,18 +1,16 @@
 //
-//  HomeViewController.swift
+//  HomeView.swift
 //  Blockbuster
 //
-//  Created by Temp on 10/5/24.
+//  Created by Mahfujul islam Akash on 5/27/24.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
-    
-    // MARK: - Properties
+class HomeView: UIView {
     
     lazy var titleView: TopView = {
-        let title = TopView(motherSize: CGSize(width: view.frame.width, height: 65))
+        let title = TopView(motherSize: CGSize(width: frame.width, height: 65))
         title.searchButton.addTarget(self, action: #selector(searchTapped), for: .touchDown)
         return title
     }()
@@ -47,27 +45,26 @@ class HomeViewController: UIViewController {
     }()
     
     let homeViewModel = HomeViewModel()
-
-    // MARK: - View Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        // Set background color
-        view.backgroundColor = UIColor(hexString: "3B2050")
+    init(_ frame: CGRect = .zero){
+        super.init(frame: frame)
+        updateUI()
+    }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        updateUI()
+    }
+    
+    func updateUI(){
+        backgroundColor = UIColor(hexString: "3B2050")
         
         // Add stack view to view hierarchy
-        view.addSubview(stackView)
-        stackView.anchorView(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, paddingTop: 60)
-        
+        addSubview(stackView)
+        stackView.anchorView(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, paddingTop: 60)
     }
-    override func viewDidAppear(_ animated: Bool) {
-        NetworkService.shared.checkConnectivity(completion: {[weak self] success in
-            if !success{
-                self?.showAlert()
-            }
-        })
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Actions
@@ -84,11 +81,12 @@ class HomeViewController: UIViewController {
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
+
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return homeViewModel.getCellCount()
